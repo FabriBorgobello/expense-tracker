@@ -7,7 +7,7 @@ import { URL_BASE } from '../../constants';
 
 const AccountOperations = () => {
   const { params } = useRoute<any>();
-  const [{ data: operations, loading, error }] = useAxios(
+  const [{ data: operations, loading, error }, refetch] = useAxios(
     `${URL_BASE}/operations?accountId=${params.accountId}`,
   );
 
@@ -19,7 +19,7 @@ const AccountOperations = () => {
   }
 
   const operationList = operations.map((operation: any) => (
-    <OperationCard operation={operation} key={operation.id} />
+    <OperationCard operation={operation} key={operation.id} refetch={refetch} />
   ));
 
   const emptyState = <Text>No operations</Text>;

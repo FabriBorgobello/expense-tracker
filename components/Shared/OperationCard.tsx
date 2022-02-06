@@ -1,31 +1,64 @@
-import { Image, StyleSheet, Text, View } from 'react-native';
 import * as React from 'react';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TouchableNativeFeedback,
+  View,
+} from 'react-native';
 import { Operation } from '../../types';
 import { OPERATION_IMAGES } from '../../assets/images';
+import OperationCardMenu from './OperationCardMenu';
+import { useAxiosManual } from '../../hooks/useAxiosManual';
+import { AxiosPromise, AxiosRequestConfig } from 'axios';
+import { RefetchOptions } from 'axios-hooks';
 
 interface Props {
   operation: Operation;
+  refetch: (
+    config?: AxiosRequestConfig<any> | undefined,
+    options?: RefetchOptions | undefined,
+  ) => AxiosPromise<any>;
 }
 
-const OperationCard = ({ operation }: Props) => {
+const OperationCard = ({ operation, refetch }: Props) => {
+  const [{}, execute] = useAxiosManual(`/operations/${operation.id}`, 'DELETE');
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
   const isExpense = operation.type === 'expense';
 
+  const handleDelete = async () => {
+    await execute();
+    refetch();
+  };
+
   return (
-    <View style={styles.container}>
-      <View style={styles.leftContainer}>
-        <Image style={styles.image} source={OPERATION_IMAGES[operation.type]} />
-        <View style={styles.leftText}>
-          <Text style={styles.date}>{operation.date}</Text>
-          <Text style={styles.description}>{operation.description}</Text>
+    <TouchableNativeFeedback onLongPress={() => setIsMenuOpen(true)}>
+      <View style={styles.container}>
+        <OperationCardMenu
+          isOpen={isMenuOpen}
+          onClose={() => setIsMenuOpen(false)}
+          handleEdit={() => {}}
+          handleDelete={handleDelete}
+        />
+        <View style={styles.leftContainer}>
+          <Image
+            style={styles.image}
+            source={OPERATION_IMAGES[operation.type]}
+          />
+          <View style={styles.leftText}>
+            <Text style={styles.date}>{operation.date}</Text>
+            <Text style={styles.description}>{operation.description}</Text>
+          </View>
+        </View>
+        <View style={styles.rightContainer}>
+          <Text
+            style={[styles.amount, isExpense ? styles.expense : styles.income]}>
+            {isExpense ? '-' : '+'} $ {operation.amount}
+          </Text>
         </View>
       </View>
-      <View style={styles.rightContainer}>
-        <Text
-          style={[styles.amount, isExpense ? styles.expense : styles.income]}>
-          {isExpense ? '-' : '+'} $ {operation.amount}
-        </Text>
-      </View>
-    </View>
+    </TouchableNativeFeedback>
   );
 };
 
@@ -48,6 +81,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     backgroundColor: '#fafafa',
     marginBottom: 8,
+    position: 'relative',
   },
   image: {
     backgroundColor: 'red',

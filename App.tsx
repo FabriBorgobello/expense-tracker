@@ -8,17 +8,20 @@ import {
 } from '@react-navigation/native-stack';
 import HomeScreen from './screens/Home';
 import AccountScreen from './screens/Account';
+import { MenuProvider } from 'react-native-popup-menu';
 
 const Stack = createNativeStackNavigator();
 
 function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={screenOptions}>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Account" component={AccountScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <MenuProvider>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={screenOptions}>
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Account" component={AccountScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </MenuProvider>
   );
 }
 
