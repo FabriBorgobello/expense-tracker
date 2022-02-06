@@ -1,0 +1,48 @@
+{
+  "accounts": [
+    {
+      "id": 1,
+      "name": "Payoneer",
+      "balance": 10000,
+      "currency": "USD",
+      "backgroundColor": "#f94803",
+      "color": "#fff",
+      "price": 1.0,
+      "img": "payoneer"
+    },
+    {
+      "id": 2,
+      "name": "EUR Cash",
+      "balance": 10000,
+      "currency": "EUR",
+      "backgroundColor": "#0f2b8e",
+      "color": "#fff",
+      "price": 1.12,
+      "img": "euro"
+    },
+    {
+      "id": 3,
+      "name": "USD Cash",
+      "balance": 10000,
+      "currency": "USD",
+      "backgroundColor": "#138543",
+      "color": "#fff",
+      "price": 1.0,
+      "img": "usd_cash"
+    },
+    {
+      "id": 4,
+      "name": "Binance",
+      "balance": 10000,
+      "currency": "USD",
+      "backgroundColor": "#f0b90b",
+      "color": "black",
+      "price": 1.0,
+      "img": "binance"
+    }
+  ],
+  "total_balance": {
+    "currency": "USD",
+    "balance": 10000
+  }
+}
