@@ -21,12 +21,8 @@ const AccountList = () => {
     <>
       <Text style={styles.title}>Accounts</Text>
       <ScrollView>
-        {accounts.map((account: Account, index: number) => (
-          <AccountCard
-            key={account.id}
-            account={account}
-            isLast={index === accounts.length}
-          />
+        {accounts.map((account: Account) => (
+          <AccountCard key={account.id} account={account} />
         ))}
       </ScrollView>
     </>

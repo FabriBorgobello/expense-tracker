@@ -7,7 +7,7 @@ export const useAxiosManual = (
   method: Method = 'GET',
   payload: any = {},
 ) => {
-  const [{ data, loading, error }, execute] = useAxios(
+  const handlers = useAxios(
     {
       url: `${URL_BASE}${url}`,
       method: method,
@@ -16,5 +16,5 @@ export const useAxiosManual = (
     { manual: true },
   );
 
-  return [{ data, loading, error }, execute];
+  return handlers;
 };

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {
+  Alert,
   Image,
   StyleSheet,
   Text,
@@ -24,12 +25,24 @@ interface Props {
 const OperationCard = ({ operation, refetch }: Props) => {
   const [{}, execute] = useAxiosManual(`/operations/${operation.id}`, 'DELETE');
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-
   const isExpense = operation.type === 'expense';
 
   const handleDelete = async () => {
-    await execute();
-    refetch();
+    setIsMenuOpen(false);
+    return Alert.alert(
+      'Delete',
+      'Are you sure you want to delete this operation?',
+      [
+        {
+          text: 'Delete',
+          onPress: async () => {
+            await execute();
+            refetch();
+          },
+        },
+        { text: 'Cancel' },
+      ],
+    );
   };
 
   return (

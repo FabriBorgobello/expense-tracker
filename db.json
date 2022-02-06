@@ -7,7 +7,7 @@
       "currency": "USD",
       "backgroundColor": "#f94803",
       "color": "#fff",
-      "price": 1.0,
+      "price": 1,
       "img": "payoneer"
     },
     {
@@ -27,7 +27,7 @@
       "currency": "USD",
       "backgroundColor": "#138543",
       "color": "#fff",
-      "price": 1.0,
+      "price": 1,
       "img": "usd_cash"
     },
     {
@@ -37,7 +37,7 @@
       "currency": "USD",
       "backgroundColor": "#f0b90b",
       "color": "black",
-      "price": 1.0,
+      "price": 1,
       "img": "binance"
     }
   ],
@@ -61,14 +61,6 @@
       "type": "expense",
       "amount": 300,
       "description": "Hostel"
-    },
-    {
-      "id": 3,
-      "accountId": 1,
-      "date": "2018-01-01",
-      "type": "income",
-      "amount": 100,
-      "description": "Cashback"
     },
     {
       "id": 4,
