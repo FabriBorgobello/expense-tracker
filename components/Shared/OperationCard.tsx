@@ -10,21 +10,22 @@ import {
 import { Operation } from '../../types';
 import { OPERATION_IMAGES } from '../../assets/images';
 import OperationCardMenu from './OperationCardMenu';
-import { useAxiosManual } from '../../hooks/useAxiosManual';
-import { AxiosPromise, AxiosRequestConfig } from 'axios';
-import { RefetchOptions } from 'axios-hooks';
 import { useNavigation } from '@react-navigation/native';
+import useEndpoint from '../../hooks/useEndpoint';
 
 interface Props {
   operation: Operation;
-  refetch: (
-    config?: AxiosRequestConfig<any> | undefined,
-    options?: RefetchOptions | undefined,
-  ) => AxiosPromise<any>;
+  refetch: () => Promise<void>;
 }
 
 const OperationCard = ({ operation, refetch }: Props) => {
-  const [{}, execute] = useAxiosManual(`/operations/${operation.id}`, 'DELETE');
+  const { execute } = useEndpoint(
+    'delete',
+    `/operations/${operation.id}`,
+    undefined,
+    false,
+  );
+
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const navigation = useNavigation<any>();
   const isExpense = operation.type === 'expense';

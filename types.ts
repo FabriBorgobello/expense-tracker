@@ -16,3 +16,15 @@ export interface Operation {
   amount: number;
   description: string;
 }
+
+export type Method =
+  | 'get'
+  | 'delete'
+  | 'head'
+  | 'options'
+  | 'post'
+  | 'put'
+  | 'patch'
+  | 'purge'
+  | 'link'
+  | 'unlink';

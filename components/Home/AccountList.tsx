@@ -1,27 +1,29 @@
 import { Account } from '../../types';
-import useAxios from 'axios-hooks';
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native';
 import { Text } from 'react-native';
 import AccountCard from './AccountCard';
-import { URL_BASE } from '../../constants';
+import useEndpoint from '../../hooks/useEndpoint';
 
 const AccountList = () => {
-  const [{ data: accounts, loading, error }] = useAxios(`${URL_BASE}/accounts`);
+  const { data: accounts, error, status } = useEndpoint('get', '/accounts');
 
-  if (loading) {
+  if (status === 'pending') {
     return <Text>Loading...</Text>;
   }
-  if (error) {
-    return <ScrollView>{JSON.stringify(error, null, 2)}</ScrollView>;
+  if (status === 'error') {
+    throw error;
+  }
+  if (status === 'success' && accounts?.length === 0) {
+    return <Text>No operations</Text>;
   }
 
   return (
     <>
       <Text style={styles.title}>Accounts</Text>
       <ScrollView>
-        {accounts.map((account: Account) => (
+        {accounts?.map((account: Account) => (
           <AccountCard key={account.id} account={account} />
         ))}
       </ScrollView>

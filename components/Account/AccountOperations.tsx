@@ -1,34 +1,53 @@
 import { ScrollView, StyleSheet, Text } from 'react-native';
 import * as React from 'react';
-import useAxios from 'axios-hooks';
-import { useRoute } from '@react-navigation/native';
+import { useIsFocused, useRoute } from '@react-navigation/native';
 import OperationCard from '../Shared/OperationCard';
-import { URL_BASE } from '../../constants';
-
+import useEndpoint from '../../hooks/useEndpoint';
 const AccountOperations = () => {
+  const isFocused = useIsFocused();
   const { params } = useRoute<any>();
-  const [{ data: operations, loading, error }, refetch] = useAxios(
-    `${URL_BASE}/operations?accountId=${params.accountId}`,
+  const {
+    data: operations,
+    error,
+    status,
+    execute,
+  } = useEndpoint(
+    'get',
+    '/operations',
+    {
+      accountId: params.accountId,
+    },
+    false,
   );
 
-  if (loading) {
+  React.useEffect(() => {
+    if (isFocused) {
+      execute();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isFocused]);
+
+  if (status === 'pending') {
     return <Text>Loading...</Text>;
   }
-  if (error) {
-    return <Text>Error!</Text>;
+  if (status === 'error') {
+    throw error;
   }
-
-  const operationList = operations.map((operation: any) => (
-    <OperationCard operation={operation} key={operation.id} refetch={refetch} />
-  ));
-
-  const emptyState = <Text>No operations</Text>;
+  if (status === 'success' && operations?.length === 0) {
+    return <Text>No operations</Text>;
+  }
 
   return (
     <>
       <Text>Account operations</Text>
       <ScrollView style={styles.cardContainer}>
-        {operations.length > 0 ? operationList : emptyState}
+        {operations?.map((operation: any) => (
+          <OperationCard
+            operation={operation}
+            key={operation.id}
+            refetch={execute}
+          />
+        ))}
       </ScrollView>
     </>
   );

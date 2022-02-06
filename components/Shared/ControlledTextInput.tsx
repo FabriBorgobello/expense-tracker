@@ -17,6 +17,7 @@ const ControlledTextInput = ({
   placeholder,
   showId = false,
 }: Props) => {
+  // Do not show the ID field
   if (!showId && name === 'id') {
     return null;
   }

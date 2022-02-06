@@ -1,27 +1,27 @@
 import { StyleSheet, Text, View } from 'react-native';
 import * as React from 'react';
-import useAxios from 'axios-hooks';
+import useEndpoint from '../../hooks/useEndpoint';
 
 const HomeBalance = () => {
-  const [{ data, loading, error }] = useAxios(
-    'http://localhost:3001/total_balance',
-  );
+  const { data, error, status } = useEndpoint('get', '/total_balance');
 
-  if (loading) {
+  if (status === 'idle' || status === 'pending') {
     return <Text>Loading...</Text>;
   }
-  if (error) {
+  if (status === 'error') {
     throw error;
   }
-
-  return (
-    <View style={styles.card}>
-      <Text style={styles.balanceText}>Balance</Text>
-      <Text style={styles.balanceAmount}>
-        {data.currency} {data.balance}
-      </Text>
-    </View>
-  );
+  if (status === 'success') {
+    return (
+      <View style={styles.card}>
+        <Text style={styles.balanceText}>Balance</Text>
+        <Text style={styles.balanceAmount}>
+          {data.currency} {data.balance}
+        </Text>
+      </View>
+    );
+  }
+  return null;
 };
 
 export default HomeBalance;

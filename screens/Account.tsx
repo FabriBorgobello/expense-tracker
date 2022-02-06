@@ -1,31 +1,34 @@
 import AccountBalance from '../components/Account/AccountBalance';
 import AccountHeader from '../components/Account/AccountHeader';
-import useAxios from 'axios-hooks';
 import * as React from 'react';
 import { Text } from 'react-native';
 import AccountOperations from '../components/Account/AccountOperations';
-import { URL_BASE } from '../constants';
+import useEndpoint from '../hooks/useEndpoint';
 
 function AccountScreen({ route }: any) {
   const { accountId } = route.params;
-  const [{ data: account, loading, error }] = useAxios(
-    `${URL_BASE}/accounts/${accountId}`,
-  );
+  const {
+    data: account,
+    error,
+    status,
+  } = useEndpoint('get', `/accounts/${accountId}`);
 
-  if (loading) {
+  if (status === 'pending') {
     return <Text>Loading...</Text>;
   }
-  if (error) {
-    return <Text>Error!</Text>;
+  if (status === 'error') {
+    throw error;
   }
-
-  return (
-    <>
-      <AccountHeader account={account} />
-      <AccountBalance />
-      <AccountOperations />
-    </>
-  );
+  if (status === 'success') {
+    return (
+      <>
+        <AccountHeader account={account} />
+        <AccountBalance />
+        <AccountOperations />
+      </>
+    );
+  }
+  return null;
 }
 
 export default AccountScreen;
