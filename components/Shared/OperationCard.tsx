@@ -13,6 +13,7 @@ import OperationCardMenu from './OperationCardMenu';
 import { useAxiosManual } from '../../hooks/useAxiosManual';
 import { AxiosPromise, AxiosRequestConfig } from 'axios';
 import { RefetchOptions } from 'axios-hooks';
+import { useNavigation } from '@react-navigation/native';
 
 interface Props {
   operation: Operation;
@@ -25,6 +26,7 @@ interface Props {
 const OperationCard = ({ operation, refetch }: Props) => {
   const [{}, execute] = useAxiosManual(`/operations/${operation.id}`, 'DELETE');
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const navigation = useNavigation<any>();
   const isExpense = operation.type === 'expense';
 
   const handleDelete = async () => {
@@ -45,13 +47,21 @@ const OperationCard = ({ operation, refetch }: Props) => {
     );
   };
 
+  const handleEdit = () => {
+    setIsMenuOpen(false);
+    navigation.push('Operation form', {
+      action: 'edit',
+      operationId: operation.id,
+    });
+  };
+
   return (
     <TouchableNativeFeedback onLongPress={() => setIsMenuOpen(true)}>
       <View style={styles.container}>
         <OperationCardMenu
           isOpen={isMenuOpen}
           onClose={() => setIsMenuOpen(false)}
-          handleEdit={() => {}}
+          handleEdit={handleEdit}
           handleDelete={handleDelete}
         />
         <View style={styles.leftContainer}>

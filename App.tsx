@@ -9,6 +9,7 @@ import {
 import HomeScreen from './screens/Home';
 import AccountScreen from './screens/Account';
 import { MenuProvider } from 'react-native-popup-menu';
+import OperationFormScreen from './screens/OperationForm';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,7 @@ function App() {
         <Stack.Navigator screenOptions={screenOptions}>
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Account" component={AccountScreen} />
+          <Stack.Screen name="Operation form" component={OperationFormScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </MenuProvider>
