@@ -1,15 +1,14 @@
 import { Account } from '../../types';
 import useAxios from 'axios-hooks';
-import React from 'react';
-import { Button, StyleSheet } from 'react-native';
+import * as React from 'react';
+import { StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native';
 import { Text } from 'react-native';
 import AccountCard from './AccountCard';
+import { URL_BASE } from '../../constants';
 
 const AccountList = () => {
-  const [{ data: accounts, loading, error }, refetch] = useAxios(
-    'http://localhost:3001/accounts',
-  );
+  const [{ data: accounts, loading, error }] = useAxios(`${URL_BASE}/accounts`);
 
   if (loading) {
     return <Text>Loading...</Text>;
@@ -30,7 +29,6 @@ const AccountList = () => {
           />
         ))}
       </ScrollView>
-      <Button title="Refresh" onPress={() => refetch()} />
     </>
   );
 };

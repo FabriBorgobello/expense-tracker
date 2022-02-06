@@ -1,8 +1,8 @@
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import React from 'react';
+import * as React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import type { Account } from '../../types';
-import IMAGES from '../../assets/images';
+import { ACCOUNT_IMAGES } from '../../assets/images';
 
 interface Props {
   account: Account;
@@ -22,7 +22,7 @@ function AccountCard({ account, isLast }: Props) {
         marginBottom: isLast ? 0 : 24,
       }}
       onPress={() => navigation.push('Account', { accountId: id })}>
-      <Image style={styles.image} source={IMAGES[img]} />
+      <Image style={styles.image} source={ACCOUNT_IMAGES[img]} />
       <Text style={{ ...styles.name, color }}>{name}</Text>
       <View>
         <Text style={{ ...styles.currency, color }}>{currency}</Text>

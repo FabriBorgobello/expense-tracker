@@ -1,14 +1,14 @@
 import { Image, StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import * as React from 'react';
 import { Account } from '@/types';
-import IMAGES from '../../assets/images';
+import { ACCOUNT_IMAGES } from '../../assets/images';
 
 const AccountHeader = ({ account }: { account: Account }) => {
   const { name, color, backgroundColor, img } = account;
 
   return (
     <View style={{ ...styles.container, backgroundColor: backgroundColor }}>
-      <Image style={styles.image} source={IMAGES[img]} />
+      <Image style={styles.image} source={ACCOUNT_IMAGES[img]} />
       <Text style={{ ...styles.title, color: color }}>{name}</Text>
     </View>
   );

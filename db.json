@@ -44,5 +44,135 @@
   "total_balance": {
     "currency": "USD",
     "balance": 10000
-  }
+  },
+  "operations": [
+    {
+      "id": 1,
+      "accountId": 1,
+      "date": "2018-01-01",
+      "type": "income",
+      "amount": 3000,
+      "description": "Salary"
+    },
+    {
+      "id": 2,
+      "accountId": 1,
+      "date": "2018-01-01",
+      "type": "expense",
+      "amount": 300,
+      "description": "Hostel"
+    },
+    {
+      "id": 3,
+      "accountId": 1,
+      "date": "2018-01-01",
+      "type": "income",
+      "amount": 100,
+      "description": "Cashback"
+    },
+    {
+      "id": 4,
+      "accountId": 1,
+      "date": "2018-01-01",
+      "type": "expense",
+      "amount": 300,
+      "description": "Food"
+    },
+    {
+      "id": 5,
+      "accountId": 2,
+      "date": "2018-01-01",
+      "type": "income",
+      "amount": 3000,
+      "description": "Salary"
+    },
+    {
+      "id": 6,
+      "accountId": 2,
+      "date": "2018-01-01",
+      "type": "expense",
+      "amount": 120,
+      "description": "Train ticket"
+    },
+    {
+      "id": 7,
+      "accountId": 2,
+      "date": "2018-01-01",
+      "type": "expense",
+      "amount": 60,
+      "description": "Entertainment"
+    },
+    {
+      "id": 8,
+      "accountId": 2,
+      "date": "2018-01-01",
+      "type": "expense",
+      "amount": 140,
+      "description": "Backpack"
+    },
+    {
+      "id": 9,
+      "accountId": 3,
+      "date": "2018-01-01",
+      "type": "income",
+      "amount": 3000,
+      "description": "Salary"
+    },
+    {
+      "id": 10,
+      "accountId": 3,
+      "date": "2018-01-01",
+      "type": "expense",
+      "amount": 450,
+      "description": "Clothes"
+    },
+    {
+      "id": 11,
+      "accountId": 3,
+      "date": "2018-01-01",
+      "type": "expense",
+      "amount": 200,
+      "description": "Restaurant"
+    },
+    {
+      "id": 12,
+      "accountId": 3,
+      "date": "2018-01-01",
+      "type": "expense",
+      "amount": 600,
+      "description": "Plane ticket"
+    },
+    {
+      "id": 13,
+      "accountId": 4,
+      "date": "2018-01-01",
+      "type": "income",
+      "amount": 3000,
+      "description": "Salary"
+    },
+    {
+      "id": 14,
+      "accountId": 4,
+      "date": "2018-01-01",
+      "type": "expense",
+      "amount": 300,
+      "description": "Hotel"
+    },
+    {
+      "id": 15,
+      "accountId": 4,
+      "date": "2018-01-01",
+      "type": "income",
+      "amount": 400,
+      "description": "Freelancing"
+    },
+    {
+      "id": 16,
+      "accountId": 4,
+      "date": "2018-01-01",
+      "type": "expense",
+      "amount": 60,
+      "description": "Wi-Fi"
+    }
+  ]
 }

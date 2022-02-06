@@ -1,14 +1,12 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import { Text, View } from 'react-native';
+import * as React from 'react';
 
 const AccountBalance = () => {
   return (
     <View>
-      <Text />
+      <Text>Balance: $ 10000</Text>
     </View>
   );
 };
 
 export default AccountBalance;
-
-const styles = StyleSheet.create({});

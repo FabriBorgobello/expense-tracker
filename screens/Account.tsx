@@ -2,12 +2,14 @@ import AccountBalance from '../components/Account/AccountBalance';
 import AccountHeader from '../components/Account/AccountHeader';
 import useAxios from 'axios-hooks';
 import * as React from 'react';
-import { Button, Text, View } from 'react-native';
+import { Text } from 'react-native';
+import AccountOperations from '../components/Account/AccountOperations';
+import { URL_BASE } from '../constants';
 
-function AccountScreen({ route, navigation }: any) {
+function AccountScreen({ route }: any) {
   const { accountId } = route.params;
   const [{ data: account, loading, error }] = useAxios(
-    `http://localhost:3001/accounts/${accountId}`,
+    `${URL_BASE}/accounts/${accountId}`,
   );
 
   if (loading) {
@@ -21,14 +23,7 @@ function AccountScreen({ route, navigation }: any) {
     <>
       <AccountHeader account={account} />
       <AccountBalance />
-      <View>
-        <Text>{account.name}</Text>
-        <Text>Account ID: {accountId}</Text>
-        <Button
-          title="Go to Account... again"
-          onPress={() => navigation.push('Account', { accountId })}
-        />
-      </View>
+      <AccountOperations />
     </>
   );
 }
