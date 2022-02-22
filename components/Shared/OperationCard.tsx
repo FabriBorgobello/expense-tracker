@@ -1,4 +1,6 @@
 import * as React from 'react';
+
+import { useNavigation } from '@react-navigation/native';
 import {
   Alert,
   Image,
@@ -7,11 +9,11 @@ import {
   TouchableNativeFeedback,
   View,
 } from 'react-native';
-import { Operation } from '../../types';
-import { OPERATION_IMAGES } from '../../assets/images';
-import OperationCardMenu from './OperationCardMenu';
-import { useNavigation } from '@react-navigation/native';
-import useEndpoint from '../../hooks/useEndpoint';
+
+import { OPERATION_IMAGES } from '@/assets/images';
+import OperationCardMenu from '@/components/Shared/OperationCardMenu';
+import useEndpoint from '@/hooks/useEndpoint';
+import { Operation } from '@/types';
 
 interface Props {
   operation: Operation;

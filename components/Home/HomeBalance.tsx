@@ -1,6 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native';
 import * as React from 'react';
-import useEndpoint from '../../hooks/useEndpoint';
+
+import { StyleSheet, Text, View } from 'react-native';
+
+import useEndpoint from '@/hooks/useEndpoint';
 
 const HomeBalance = () => {
   const { data, error, status } = useEndpoint('get', '/total_balance');

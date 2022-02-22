@@ -1,3 +1,6 @@
+import * as React from 'react';
+
+import { useNavigation } from '@react-navigation/native';
 import {
   View,
   Text,
@@ -5,10 +8,9 @@ import {
   Image,
   TouchableNativeFeedback,
 } from 'react-native';
-import * as React from 'react';
-import { useNavigation } from '@react-navigation/native';
-import type { Account } from '../../types';
-import { ACCOUNT_IMAGES } from '../../assets/images';
+
+import { ACCOUNT_IMAGES } from '@/assets/images';
+import type { Account } from '@/types';
 
 interface Props {
   account: Account;

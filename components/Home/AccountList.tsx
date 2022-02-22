@@ -1,10 +1,10 @@
-import { Account } from '../../types';
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
-import { ScrollView } from 'react-native';
-import { Text } from 'react-native';
-import AccountCard from './AccountCard';
-import useEndpoint from '../../hooks/useEndpoint';
+
+import { ScrollView, StyleSheet, Text } from 'react-native';
+
+import AccountCard from '@/components/Home/AccountCard';
+import useEndpoint from '@/hooks/useEndpoint';
+import { Account } from '@/types';
 
 const AccountList = () => {
   const { data: accounts, error, status } = useEndpoint('get', '/accounts');

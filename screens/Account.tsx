@@ -1,9 +1,11 @@
-import AccountBalance from '../components/Account/AccountBalance';
-import AccountHeader from '../components/Account/AccountHeader';
 import * as React from 'react';
+
 import { Text } from 'react-native';
-import AccountOperations from '../components/Account/AccountOperations';
-import useEndpoint from '../hooks/useEndpoint';
+
+import AccountBalance from '@/components/Account/AccountBalance';
+import AccountHeader from '@/components/Account/AccountHeader';
+import AccountOperations from '@/components/Account/AccountOperations';
+import useEndpoint from '@/hooks/useEndpoint';
 
 function AccountScreen({ route }: any) {
   const { accountId } = route.params;

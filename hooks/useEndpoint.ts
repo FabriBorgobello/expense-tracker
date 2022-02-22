@@ -1,7 +1,9 @@
-import { Method } from '@/types';
-import axios from 'axios';
 import * as React from 'react';
-import api from '../api';
+
+import axios from 'axios';
+
+import api from '@/api';
+import { Method } from '@/types';
 
 const useEndpoint = (
   method: Method,

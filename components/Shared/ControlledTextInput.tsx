@@ -1,7 +1,9 @@
-import { StyleSheet, Text, TextInput } from 'react-native';
-import React from 'react';
+import * as React from 'react';
+
 import { Controller, UseFormReturn } from 'react-hook-form';
-import { capitalizeFirstLetter } from '../../utils';
+import { StyleSheet, Text, TextInput } from 'react-native';
+
+import { capitalizeFirstLetter } from '@/utils';
 
 interface Props {
   methods: UseFormReturn<any>;

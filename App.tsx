@@ -1,15 +1,17 @@
 // In App.js in a new project
 
 import * as React from 'react';
+
 import { NavigationContainer } from '@react-navigation/native';
 import {
   createNativeStackNavigator,
   NativeStackNavigationOptions,
 } from '@react-navigation/native-stack';
-import HomeScreen from './screens/Home';
-import AccountScreen from './screens/Account';
 import { MenuProvider } from 'react-native-popup-menu';
-import OperationFormScreen from './screens/OperationForm';
+
+import AccountScreen from '@/screens/Account';
+import HomeScreen from '@/screens/Home';
+import OperationFormScreen from '@/screens/OperationForm';
 
 const Stack = createNativeStackNavigator();
 

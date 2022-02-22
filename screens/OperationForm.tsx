@@ -1,10 +1,12 @@
-import { useNavigation, useRoute } from '@react-navigation/native';
 import * as React from 'react';
-import { Button, Text, View } from 'react-native';
+
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { Button, Text, View } from 'react-native';
+
+import ControlledTextInput from '@/components/Shared/ControlledTextInput';
+import useEndpoint from '@/hooks/useEndpoint';
 import { Operation } from '@/types';
-import ControlledTextInput from '../components/Shared/ControlledTextInput';
-import useEndpoint from '../hooks/useEndpoint';
 
 function OperationFormScreen() {
   const { params } = useRoute<any>();

@@ -1,8 +1,10 @@
-import { ScrollView, StyleSheet, Text } from 'react-native';
 import * as React from 'react';
+
 import { useIsFocused, useRoute } from '@react-navigation/native';
-import OperationCard from '../Shared/OperationCard';
-import useEndpoint from '../../hooks/useEndpoint';
+import { ScrollView, StyleSheet, Text } from 'react-native';
+
+import OperationCard from '@/components/Shared/OperationCard';
+import useEndpoint from '@/hooks/useEndpoint';
 const AccountOperations = () => {
   const isFocused = useIsFocused();
   const { params } = useRoute<any>();

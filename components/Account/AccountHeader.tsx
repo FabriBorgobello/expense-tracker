@@ -1,7 +1,9 @@
-import { Image, StyleSheet, Text, View } from 'react-native';
 import * as React from 'react';
+
+import { Image, StyleSheet, Text, View } from 'react-native';
+
+import { ACCOUNT_IMAGES } from '@/assets/images';
 import { Account } from '@/types';
-import { ACCOUNT_IMAGES } from '../../assets/images';
 
 const AccountHeader = ({ account }: { account: Account }) => {
   const { name, color, backgroundColor, img } = account;

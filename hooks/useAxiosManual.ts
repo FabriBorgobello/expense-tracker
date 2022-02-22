@@ -1,6 +1,7 @@
 import { Method } from 'axios';
 import useAxios from 'axios-hooks';
-import { URL_BASE } from '../constants';
+
+import { URL_BASE } from '@/constants';
 
 export const useAxiosManual = (
   url: string,
