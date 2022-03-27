@@ -29,7 +29,7 @@ const AccountOperations = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFocused]);
 
-  if (status === 'pending') {
+  if (status === 'idle' || status === 'pending') {
     return <Spinner />;
   }
 

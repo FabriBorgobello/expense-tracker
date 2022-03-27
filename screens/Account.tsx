@@ -17,7 +17,7 @@ function AccountScreen({ route }: any) {
   } = useEndpoint(`/accounts/${accountId}`);
   useErrorHandler(error);
 
-  if (status === 'pending') {
+  if (status === 'idle' || status === 'pending') {
     return <Text>Loading...</Text>;
   }
 

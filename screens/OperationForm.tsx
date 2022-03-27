@@ -47,7 +47,7 @@ function OperationFormScreen() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [operation]);
 
-  if (status === 'pending') {
+  if (status === 'idle' || status === 'pending') {
     return <Spinner />;
   }
 

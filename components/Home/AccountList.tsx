@@ -12,7 +12,7 @@ const AccountList = () => {
   const { data: accounts, error, status } = useEndpoint('/accounts');
   useErrorHandler(error);
 
-  if (status === 'pending') {
+  if (status === 'idle' || status === 'pending') {
     return <Spinner />;
   }
 
