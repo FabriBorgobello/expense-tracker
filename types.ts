@@ -28,3 +28,11 @@ export type Method =
   | 'purge'
   | 'link'
   | 'unlink';
+
+export interface ReqOptions {
+  method?: Method;
+  params?: { [key: string]: any };
+  immediate?: boolean;
+  onSuccess?: (response: any) => void;
+  onError?: (error: any) => void;
+}

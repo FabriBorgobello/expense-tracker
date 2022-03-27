@@ -13,7 +13,7 @@ function AccountScreen({ route }: any) {
     data: account,
     error,
     status,
-  } = useEndpoint('get', `/accounts/${accountId}`);
+  } = useEndpoint(`/accounts/${accountId}`);
 
   if (status === 'pending') {
     return <Text>Loading...</Text>;

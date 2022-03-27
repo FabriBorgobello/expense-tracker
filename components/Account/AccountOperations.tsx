@@ -13,14 +13,10 @@ const AccountOperations = () => {
     error,
     status,
     execute,
-  } = useEndpoint(
-    'get',
-    '/operations',
-    {
-      accountId: params.accountId,
-    },
-    false,
-  );
+  } = useEndpoint('/operations', {
+    params: { accountId: params.accountId },
+    immediate: false,
+  });
 
   React.useEffect(() => {
     if (isFocused) {

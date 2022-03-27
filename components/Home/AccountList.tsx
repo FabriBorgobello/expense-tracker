@@ -7,7 +7,7 @@ import useEndpoint from '@/hooks/useEndpoint';
 import { Account } from '@/types';
 
 const AccountList = () => {
-  const { data: accounts, error, status } = useEndpoint('get', '/accounts');
+  const { data: accounts, error, status } = useEndpoint('/accounts');
 
   if (status === 'pending') {
     return <Text>Loading...</Text>;

@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import useEndpoint from '@/hooks/useEndpoint';
 
 const HomeBalance = () => {
-  const { data, error, status } = useEndpoint('get', '/total_balance');
+  const { data, error, status } = useEndpoint('/total_balance');
 
   if (status === 'idle' || status === 'pending') {
     return <Text>Loading...</Text>;

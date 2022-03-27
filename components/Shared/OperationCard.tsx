@@ -21,12 +21,10 @@ interface Props {
 }
 
 const OperationCard = ({ operation, refetch }: Props) => {
-  const { execute } = useEndpoint(
-    'delete',
-    `/operations/${operation.id}`,
-    undefined,
-    false,
-  );
+  const { execute } = useEndpoint(`/operations/${operation.id}`, {
+    method: 'delete',
+    immediate: false,
+  });
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const navigation = useNavigation<any>();

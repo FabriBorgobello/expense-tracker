@@ -16,13 +16,11 @@ function OperationFormScreen() {
     data: operation,
     error,
     status,
-  } = useEndpoint('get', `/operations/${operationId}`);
-  const { execute } = useEndpoint(
-    'patch',
-    `/operations/${operationId}`,
-    undefined,
-    false,
-  );
+  } = useEndpoint(`/operations/${operationId}`);
+  const { execute } = useEndpoint(`/operations/${operationId}`, {
+    method: 'patch',
+    immediate: false,
+  });
 
   const methods = useForm<Operation>({
     defaultValues: action === 'edit' && operation,

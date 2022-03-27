@@ -3,14 +3,19 @@ import * as React from 'react';
 import axios from 'axios';
 
 import api from '@/api';
-import { Method } from '@/types';
+import { ReqOptions } from '@/types';
 
 const useEndpoint = (
-  method: Method,
   endpoint: string,
-  params: Object = {},
-  immediate: boolean = true,
+  options: ReqOptions = {
+    method: 'get',
+    params: {},
+    immediate: true,
+    onSuccess: () => {},
+    onError: () => {},
+  },
 ) => {
+  const { method = 'get', params, immediate, onSuccess, onError } = options;
   const [data, setData] = React.useState<any>(null);
   const [error, setError] = React.useState<Error | null>(null);
   const [status, setStatus] = React.useState<
@@ -29,18 +34,22 @@ const useEndpoint = (
         } else {
           response = await api[method](endpoint, body, { params });
         }
-        console.log('Params', params);
-        console.log(response);
         setData(response.data);
         setStatus('success');
+        if (onSuccess) {
+          onSuccess(response.data);
+        }
       } catch (err) {
         if (axios.isAxiosError(err)) {
           setError(err);
           setStatus('error');
+          if (onError) {
+            onError(err);
+          }
         }
       }
     },
-    [endpoint, method, params],
+    [endpoint, method, onError, onSuccess, params],
   );
 
   React.useEffect(() => {
