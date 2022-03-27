@@ -1,10 +1,12 @@
 import * as React from 'react';
 
 import { useNavigation, useRoute } from '@react-navigation/native';
+import { useErrorHandler } from 'react-error-boundary';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { Button, Text, View } from 'react-native';
+import { Button, View } from 'react-native';
 
 import ControlledTextInput from '@/components/Shared/ControlledTextInput';
+import Spinner from '@/components/Shared/Spinner';
 import useEndpoint from '@/hooks/useEndpoint';
 import { Operation } from '@/types';
 
@@ -17,6 +19,8 @@ function OperationFormScreen() {
     error,
     status,
   } = useEndpoint(`/operations/${operationId}`);
+  useErrorHandler(error);
+
   const { execute } = useEndpoint(`/operations/${operationId}`, {
     method: 'patch',
     immediate: false,
@@ -44,10 +48,7 @@ function OperationFormScreen() {
   }, [operation]);
 
   if (status === 'pending') {
-    return <Text>Loading...</Text>;
-  }
-  if (status === 'error') {
-    throw error;
+    return <Spinner />;
   }
 
   if (action === 'new' || operation) {

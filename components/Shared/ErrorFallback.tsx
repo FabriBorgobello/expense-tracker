@@ -2,17 +2,17 @@ import * as React from 'react';
 
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-interface Props {
+interface FallbackProps {
   error: Error;
-  resetError: Function;
+  resetErrorBoundary: (...args: Array<unknown>) => void;
 }
 
-const ErrorFallback = ({ error, resetError }: Props) => {
+const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Something happened!</Text>
-      <Text style={styles.subtitle}>{error.toString()}</Text>
-      <TouchableOpacity style={styles.button} onPress={() => resetError()}>
+      <Text style={styles.subtitle}>{`${error.name}: ${error.message}`}</Text>
+      <TouchableOpacity style={styles.button} onPress={resetErrorBoundary}>
         <Text style={styles.buttonText}>Try again</Text>
       </TouchableOpacity>
     </View>

@@ -1,18 +1,24 @@
 import * as React from 'react';
 
+import { ErrorBoundary } from 'react-error-boundary';
 import { View, StyleSheet } from 'react-native';
 
 import AccountList from '@/components/Home/AccountList';
 import HomeBalance from '@/components/Home/HomeBalance';
 import HomeHeader from '@/components/Home/HomeHeader';
+import ErrorFallback from '@/components/Shared/ErrorFallback';
 
 function HomeScreen() {
   return (
     <View style={styles.container}>
       <HomeHeader />
-      <HomeBalance />
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <HomeBalance />
+      </ErrorBoundary>
       <View style={styles.divider} />
-      <AccountList />
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <AccountList />
+      </ErrorBoundary>
     </View>
   );
 }

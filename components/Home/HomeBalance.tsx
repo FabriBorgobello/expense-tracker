@@ -1,18 +1,19 @@
 import * as React from 'react';
 
+import { useErrorHandler } from 'react-error-boundary';
 import { StyleSheet, Text, View } from 'react-native';
 
+import Spinner from '@/components/Shared/Spinner';
 import useEndpoint from '@/hooks/useEndpoint';
 
 const HomeBalance = () => {
   const { data, error, status } = useEndpoint('/total_balance');
+  useErrorHandler(error);
 
   if (status === 'idle' || status === 'pending') {
-    return <Text>Loading...</Text>;
+    return <Spinner />;
   }
-  if (status === 'error') {
-    throw error;
-  }
+
   if (status === 'success') {
     return (
       <View style={styles.card}>

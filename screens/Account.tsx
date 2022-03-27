@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { useErrorHandler } from 'react-error-boundary';
 import { Text } from 'react-native';
 
 import AccountBalance from '@/components/Account/AccountBalance';
@@ -14,13 +15,12 @@ function AccountScreen({ route }: any) {
     error,
     status,
   } = useEndpoint(`/accounts/${accountId}`);
+  useErrorHandler(error);
 
   if (status === 'pending') {
     return <Text>Loading...</Text>;
   }
-  if (status === 'error') {
-    throw error;
-  }
+
   if (status === 'success') {
     return (
       <>

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import axios from 'axios';
+import invariant from 'tiny-invariant';
 
 import api from '@/api';
 import { ReqOptions } from '@/types';
@@ -15,12 +15,12 @@ const useEndpoint = (
     onError: () => {},
   },
 ) => {
-  const { method = 'get', params, immediate, onSuccess, onError } = options;
   const [data, setData] = React.useState<any>(null);
   const [error, setError] = React.useState<Error | null>(null);
   const [status, setStatus] = React.useState<
     'idle' | 'pending' | 'success' | 'error'
   >('idle');
+  const { method = 'get', params, immediate, onSuccess, onError } = options;
 
   const execute = React.useCallback(
     async (body = {}) => {
@@ -29,7 +29,7 @@ const useEndpoint = (
       setStatus('pending');
       try {
         let response;
-        if (method === 'get') {
+        if (method === 'get' || method === 'delete') {
           response = await api.get(endpoint, { params });
         } else {
           response = await api[method](endpoint, body, { params });
@@ -40,12 +40,11 @@ const useEndpoint = (
           onSuccess(response.data);
         }
       } catch (err) {
-        if (axios.isAxiosError(err)) {
-          setError(err);
-          setStatus('error');
-          if (onError) {
-            onError(err);
-          }
+        invariant(err instanceof Error, 'err must be an Error');
+        setError(err);
+        setStatus('error');
+        if (onError) {
+          onError(err);
         }
       }
     },

@@ -5,4 +5,11 @@ const instance: any = axios.create({
   headers: { 'Content-Type': 'application/json' },
 });
 
+instance.interceptors.response.use(
+  (response: any) => response,
+  (error: Error) => {
+    throw error;
+  },
+);
+
 export default instance;

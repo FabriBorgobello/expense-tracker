@@ -1,20 +1,21 @@
 import * as React from 'react';
 
+import { useErrorHandler } from 'react-error-boundary';
 import { ScrollView, StyleSheet, Text } from 'react-native';
 
 import AccountCard from '@/components/Home/AccountCard';
+import Spinner from '@/components/Shared/Spinner';
 import useEndpoint from '@/hooks/useEndpoint';
 import { Account } from '@/types';
 
 const AccountList = () => {
   const { data: accounts, error, status } = useEndpoint('/accounts');
+  useErrorHandler(error);
 
   if (status === 'pending') {
-    return <Text>Loading...</Text>;
+    return <Spinner />;
   }
-  if (status === 'error') {
-    throw error;
-  }
+
   if (status === 'success' && accounts?.length === 0) {
     return <Text>No operations</Text>;
   }
