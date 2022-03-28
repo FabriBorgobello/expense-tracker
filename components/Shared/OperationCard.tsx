@@ -36,14 +36,15 @@ const OperationCard = ({ operation, refetch }: Props) => {
       'Delete',
       'Are you sure you want to delete this operation?',
       [
+        { text: 'Cancel', style: 'cancel' },
         {
           text: 'Delete',
+          style: 'destructive',
           onPress: async () => {
             await execute();
             refetch();
           },
         },
-        { text: 'Cancel' },
       ],
     );
   };

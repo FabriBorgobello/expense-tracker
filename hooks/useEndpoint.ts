@@ -30,7 +30,7 @@ const useEndpoint = (
       try {
         let response;
         if (method === 'get' || method === 'delete') {
-          response = await api.get(endpoint, { params });
+          response = await api[method](endpoint, { params });
         } else {
           response = await api[method](endpoint, body, { params });
         }
