@@ -20,17 +20,19 @@ export default AccountHeader;
 
 const styles = StyleSheet.create({
   container: {
-    padding: 32,
+    padding: 16,
     justifyContent: 'center',
     alignItems: 'center',
+    borderRadius: 8,
+    marginBottom: 16,
   },
   title: {
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: 'bold',
   },
   image: {
-    width: 72,
-    height: 72,
+    width: 64,
+    height: 64,
     borderRadius: 80 / 2,
     marginBottom: 8,
     backgroundColor: '#fff',

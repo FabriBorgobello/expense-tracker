@@ -12,15 +12,13 @@ import FloatingActionButton from '@/components/Shared/FloatingActionButton';
 function HomeScreen() {
   return (
     <View style={styles.container}>
-      <HomeHeader />
       <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <HomeHeader />
         <HomeBalance />
-      </ErrorBoundary>
-      <View style={styles.divider} />
-      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <View style={styles.divider} />
         <AccountList />
+        <FloatingActionButton handlePress={() => {}} icon="+" />
       </ErrorBoundary>
-      <FloatingActionButton handlePress={() => {}} icon="+" />
     </View>
   );
 }

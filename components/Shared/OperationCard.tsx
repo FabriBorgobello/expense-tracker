@@ -12,23 +12,18 @@ import {
 
 import { OPERATION_IMAGES } from '@/assets/images';
 import OperationCardMenu from '@/components/Shared/OperationCardMenu';
-import useEndpoint from '@/hooks/useEndpoint';
+import { useOperations } from '@/contexts/OperationsContext';
 import { Operation } from '@/types';
 
 interface Props {
   operation: Operation;
-  refetch: () => Promise<void>;
 }
 
-const OperationCard = ({ operation, refetch }: Props) => {
-  const { execute } = useEndpoint(`/operations/${operation.id}`, {
-    method: 'delete',
-    immediate: false,
-  });
-
+const OperationCard = ({ operation }: Props) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const navigation = useNavigation<any>();
-  const isExpense = operation.type === 'expense';
+  const { deleteOperation } = useOperations();
+  const isExpense = operation?.type === 'expense';
 
   const handleDelete = async () => {
     setIsMenuOpen(false);
@@ -41,8 +36,7 @@ const OperationCard = ({ operation, refetch }: Props) => {
           text: 'Delete',
           style: 'destructive',
           onPress: async () => {
-            await execute();
-            refetch();
+            await deleteOperation(operation.id);
           },
         },
       ],
@@ -53,7 +47,7 @@ const OperationCard = ({ operation, refetch }: Props) => {
     setIsMenuOpen(false);
     navigation.push('Operation form', {
       action: 'edit',
-      operationId: operation.id,
+      operationId: operation?.id,
     });
   };
 

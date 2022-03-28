@@ -1,24 +1,19 @@
 import * as React from 'react';
 
-import { Controller, UseFormReturn } from 'react-hook-form';
+import { Controller, useFormContext } from 'react-hook-form';
 import { StyleSheet, Text, TextInput } from 'react-native';
 
 import { capitalizeFirstLetter } from '@/utils';
 
 interface Props {
-  methods: UseFormReturn<any>;
   name: string;
   placeholder?: string;
   showId?: boolean;
   type?: 'text' | 'number' | 'date';
 }
 
-const ControlledTextInput = ({
-  methods,
-  name,
-  placeholder,
-  showId = false,
-}: Props) => {
+const ControlledTextInput = ({ name, placeholder, showId = false }: Props) => {
+  const methods = useFormContext();
   // Do not show the ID field
   if (!showId && name === 'id') {
     return null;
@@ -29,12 +24,13 @@ const ControlledTextInput = ({
       <Controller
         control={methods.control}
         rules={{ required: 'This is required.' }}
-        render={({ field: { onChange, onBlur, value } }) => {
+        render={({ field }) => {
+          console.log(field);
           return (
             <TextInput
-              onBlur={onBlur}
-              onChangeText={onChange}
-              value={`${value}`}
+              onBlur={field.onBlur}
+              onChangeText={field.onChange}
+              value={`${field.value}`}
               placeholder={placeholder || capitalizeFirstLetter(name)}
             />
           );
