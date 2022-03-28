@@ -7,6 +7,7 @@ import AccountList from '@/components/Home/AccountList';
 import HomeBalance from '@/components/Home/HomeBalance';
 import HomeHeader from '@/components/Home/HomeHeader';
 import ErrorFallback from '@/components/Shared/ErrorFallback';
+import FloatingActionButton from '@/components/Shared/FloatingActionButton';
 
 function HomeScreen() {
   return (
@@ -19,6 +20,7 @@ function HomeScreen() {
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <AccountList />
       </ErrorBoundary>
+      <FloatingActionButton handlePress={() => {}} icon="+" />
     </View>
   );
 }
